@@ -20,17 +20,23 @@ def get_sales_data():
     """
     Get sales figures input from the users
     """
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10,20,30,40,50,60\n")
+    while True: #linhas 23 a 37 keep o código running
+        print("Please enter sales data from the last market.")
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 10,20,30,40,50,60\n")
 
-    data_str = input("Enter your data here: ") #print(f"The data provided is {data_str}")
-    """
-    Use input() method to get sales data  from the user in the terminal
-    """
+        #Our get_sales_data function runs a while loop, that asks the user for data:
+        data_str = input("Enter your data here: ")
+        #It converts the string of data from the user into a list of values:
+        sales_data = data_str.split(",")
 
-    sales_data = data_str.split(",") #split() method returns the broken up values as a lsit
-    validate_data(sales_data) 
+        #And then we use a single if statement to call our validate data function, passing it our sales data list.
+        #This functions check errors. If there is no errors, returns "true" (line 58), otherwise returns false (56)
+        if validate_data(sales_data):
+            print("Data is valid!")
+            break
+
+    return sales_data    
     
 #create a new function to handle our validation:
 def validate_data(values):
@@ -49,9 +55,8 @@ def validate_data(values):
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
 
-get_sales_data()
-#RESULTADO: os values tem q estar numa lista:
-#Enter your data here: 1,2,3,4,5,6,5
-#['1', '2', '3', '4', '5', '6', '5'] td o q tá entre apóstrofe é string
+    return True
 
+data = get_sales_data()
