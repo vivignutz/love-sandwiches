@@ -3,7 +3,6 @@
 #Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -31,7 +30,7 @@ def get_sales_data():
         print("Example: 10,20,30,40,50,60\n")
 
         #Our get_sales_data function runs a while loop, that asks the user for data:
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
         #It converts the string of data from the user into a list of values:
         sales_data = data_str.split(",")
 
